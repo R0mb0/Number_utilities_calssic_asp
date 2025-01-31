@@ -11,6 +11,44 @@ Class number_utilities
         my_dictionary = Null 
 	end sub
 
+    Function split_number(number, splitting_position)
+        Dim digits
+        digits = count_number_digits(number)
+        Dim my_array(1)
+        Dim my_number
+        If splitting_position = digits Then 
+            my_array(0) = number
+            my_array(1) = null
+            split_number = my_array
+            Exit Function
+        End If 
+        If splitting_position < digits Then 
+            If is_integer(number) Then 
+                my_number = number / 10 ^ splitting_position
+                split_number = Split(my_number, ",")
+                Exit Function
+            Else 
+                my_number = string_to_array(number)
+                Dim index
+                index = splitting_position -1
+                If my_number(splitting_position -1) = "," Then 
+                    index = splitting_position
+                End If 
+                Dim temp 
+                For temp = 0 To index
+                    my_array(0) = my_array(0) & my_number(index)
+                Next
+                For temp = index To UBound(my_number)
+                    my_array(1) = my_array(1) & my_number(index)
+                Next
+                split_number = my_array
+                Exit Function
+            End If 
+        Else
+            Call Err.Raise(vbObjectError + 10, "split_number", "Splitting position is not valid")
+        End If 
+    End Function
+
     'Function to convert a string into a number
     Public Function string_to_number(str)
         Dim length
@@ -58,27 +96,11 @@ Class number_utilities
 
     'Function to count number's digits
     Public Function count_number_digits(number)
-        Dim count
-        count = 0
-        Dim my_number
-        my_number = number
         If is_integer(number) Then 
-            Do While my_number > 1
-                count = count + 1
-                my_number = my_number / 10
-            Loop
+            count_number_digits = Len(number)
         Else
-            Do While my_number > 1
-                count = count + 1
-                my_number = my_number / 10
-            Loop
-            my_number = Int(Split(number, ",")(1))
-            Do While my_number > 1
-                count = count + 1
-                my_number = my_number / 10
-            Loop
+            count_number_digits = Len(Replace(number, ",", ""))
         End If 
-        count_number_digits = count
     End Function
 
     'Function to convert a number in a array
@@ -95,24 +117,18 @@ Class number_utilities
     End Function
 
     'Function to free round number
-    Public Function free_round(number, deciaml_to_round, number_from_starting_round)
+    Function free_round(number, deciaml_to_round, number_from_starting_round)
         If Not is_integer(number) Then 
-            'Response.write "STAMPA DI DEBUG: " & count_number_digits(Split(number,",")(1)) & "<br>"
-            If deciaml_to_round < count_number_digits(Int(Split(number,",")(1))) Then 
+            If deciaml_to_round < count_number_digits(Split(number,",")(1)) Then 
                 Dim my_number
                 my_number = number * (10 ^ deciaml_to_round)
-                If Ubound(Split(my_number, ",")) = 0 Then 
-                    free_round = temp_number / (10 ^ deciaml_to_round)
-                    Exit Function
-                Else
-                    Dim temp_number
-                    temp_number = Split(my_number, ",")(0)
-                    If Int(stringToArray(Split(my_number, ",")(1))(0)) >= number_from_starting_round Then
-                        temp_number = temp_number + 1
-                    End If 
-                    free_round = temp_number / (10 ^ deciaml_to_round)
-                    Exit Function
-                End If
+                Dim temp_number
+                temp_number = Split(my_number, ",")(0)
+                If Int(stringToArray(Split(my_number, ",")(1))(0)) >= number_from_starting_round Then
+                    temp_number = temp_number + 1
+                End If 
+                free_round = temp_number / (10 ^ deciaml_to_round)
+                Exit Function
             Else
                 'Call Err.Raise(vbObjectError + 10, "free_round", "There is no decimal to round")
                 free_round = number
