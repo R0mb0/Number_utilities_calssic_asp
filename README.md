@@ -31,24 +31,24 @@
         Set utilities = new number_utilities
    ```
 
-   2. Use the class
-      ```
-        Response.write("<h3> Test Split Number </h3><br>")
-        Response.write("Number: 345 <br>")
-        Response.write("Splitting Position: 2 <br>")
-        Dim temp 
-        temp = utilities.split_number(345, 2)
-        Response.write("First element: " & temp(0) & "<br>")
-        Response.write("Second element: " & temp(1) & "<br>")
-        Response.write("Number: 12.345 <br>")
-        Response.write("Splitting Position: 3 <br>")
-        temp = utilities.split_number(12.345, 2)
-        Response.write("First element: " & temp(0) & "<br>")
-        Response.write("Second element: " & temp(1) & "<br>")
-        Response.write("Number: 123.0345 <br>")
-        Response.write("Splitting Position: 3 <br>")
-        temp = utilities.split_number(123.0345, 2)
-        Response.write("First element: " & temp(0) & "<br>")
-        Response.write("Second element: " & temp(1) & "<br>")
-      %>
-      ```
+2. Use the class
+   ```
+     Response.write("<h3> Test Split Number </h3><br>")
+     Response.write("Number: 345 <br>")
+     Response.write("Splitting Position: 2 <br>")
+     Dim temp 
+     temp = utilities.split_number(345, 2)
+     Response.write("First element: " & temp(0) & "<br>")
+     Response.write("Second element: " & temp(1) & "<br>")
+     Response.write("Number: 12.345 <br>")
+     Response.write("Splitting Position: 3 <br>")
+     temp = utilities.split_number(12.345, 2)
+     Response.write("First element: " & temp(0) & "<br>")
+     Response.write("Second element: " & temp(1) & "<br>")
+     Response.write("Number: 123.0345 <br>")
+     Response.write("Splitting Position: 3 <br>")
+     temp = utilities.split_number(123.0345, 2)
+     Response.write("First element: " & temp(0) & "<br>")
+     Response.write("Second element: " & temp(1) & "<br>")
+   %>
+   ```
