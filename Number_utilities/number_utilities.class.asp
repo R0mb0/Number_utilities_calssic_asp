@@ -9,7 +9,7 @@ Class number_utilities
 
 	end sub
 
-    'Function to split number when I don't know how parser work
+    'Function to split a number when is not possible know how the interpreter works
     Private Function my_split(number)
         If InStr(number, ",") <> 0 Then 
 		my_split = Split(number,",")
