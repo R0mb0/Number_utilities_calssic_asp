@@ -23,7 +23,7 @@
 > From `Test.asp`
 
 1. Initialize the class
-   ```
+   ```asp
      <%@LANGUAGE="VBSCRIPT"%>
      <!--#include file="number_utilities.class.asp"-->
      <%
@@ -32,7 +32,7 @@
    ```
 
 2. Use the class
-   ```
+   ```asp
      Response.write("<h3> Test Split Number </h3><br>")
      Response.write("Number: 345 <br>")
      Response.write("Splitting Position: 2 <br>")
